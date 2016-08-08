@@ -1,4 +1,5 @@
 @echo off
+color d
 
 rem Define some constants for our UberDOG server:
 set MAX_CHANNELS=999999
