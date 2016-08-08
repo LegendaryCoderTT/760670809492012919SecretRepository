@@ -20,7 +20,6 @@ echo Astron IP: %ASTRON_IP%
 echo Event Logger IP: %EVENTLOGGER_IP%
 echo ===============================
 
-cd ../../
 
 :main
 "C:\Panda3D-1.10.0\python\ppython.exe" ^

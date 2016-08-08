@@ -1,5 +1,5 @@
 @echo off
-cd "../../dependencies/astron/"
+cd dependencies/astron/
 
 astrond --loglevel info config/cluster.yml
 pause

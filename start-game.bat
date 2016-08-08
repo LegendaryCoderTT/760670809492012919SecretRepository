@@ -60,8 +60,6 @@ if %INPUT%==2 (
 echo Gameserver: %TTS_GAMESERVER%
 echo ===============================
 
-cd ../../
-
 :main
 if %INPUT%==2 (
     "C:\Panda3D-1.10.0\python\ppython.exe" -m toontown.toonbase.ToontownStartRemoteDB
