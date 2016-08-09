@@ -49,9 +49,9 @@ class ToontownLoadingScreen:
         self.__expectedCount = 0
         self.__count = 0
         self.gui = loader.loadModel('phase_3/models/gui/progress-background.bam')
-        self.tip = DirectLabel(guiId='ToontownLoadingScreenTip', parent=self.gui, relief=None, pos=(0, 0, 0.20), text='', textMayChange=1, text_scale=0.04, text_fg=(1, 1, 1, 1), text_shadow=(0, 0, 0, 1), text_wordwrap=125, text_align=TextNode.ACenter)
-        self.title = DirectLabel(guiId='ToontownLoadingScreenTitle', parent=self.gui, relief=None, pos=(0, 0, 0.31), text='', textMayChange=1, text_scale=0.1, text_fg=(0.00, 0.58, 0.996, 1), text_align=TextNode.ACenter, text_font=ToontownGlobals.getSignFont())
-        self.waitBar = DirectWaitBar(guiId='ToontownLoadingScreenWaitBar', parent=self.gui, frameSize=(base.a2dLeft+(base.a2dRight/2.95), base.a2dRight-(base.a2dRight/2.95), -0.03, 0.03), pos=(0, 0, 0.25), text='')
+        self.title = DirectLabel(guiId='ToontownLoadingScreenTitle', parent=self.gui, relief=None, pos=(0, 0, 0.24), text='', textMayChange=1, text_scale=0.1, text_fg=(1, 1, 2, 0.85), text_shadow=(0, 0, 0, 5), text_align=TextNode.ACenter, text_font=ToontownGlobals.getSignFont())
+        self.waitBar = DirectWaitBar(guiId='ToontownLoadingScreenWaitBar', parent=self.gui, frameSize=(base.a2dLeft+(base.a2dRight/4.95), base.a2dRight-(base.a2dRight/4.95), 0, -0.10), pos=(0, 0, 0.20), text='', frameColor=(1, 1, 1, 0.75), barColor=(1.0, 0, 0, 0.8))
+        self.waitBar.setTransparency(TransparencyAttrib.MAlpha)
         logoScale = 0.5625  # Scale for our locked aspect ratio (2:1).
         self.logo = OnscreenImage(
             image='phase_3/maps/toontown-logo.png',
@@ -63,33 +63,35 @@ class ToontownLoadingScreen:
         self.logo.setPos(0, 0, -scale[2])
 
     def destroy(self):
-        self.tip.destroy()
         self.title.destroy()
         self.gui.removeNode()
         self.logo.removeNode()
 
     def getTip(self, tipCategory):
-        return TTLocalizer.TipTitle + ' ' + random.choice(TTLocalizer.TipDict.get(tipCategory))
+        return TTLocalizer.TipTitle + '\n' + random.choice(TTLocalizer.TipDict.get(tipCategory))
 
     def begin(self, range, label, gui, tipCategory, zoneId):
         self.waitBar['range'] = range
         self.title['text'] = label
+        if ToontownGlobals.BossbotHQ <= zoneId <= ToontownGlobals.LawbotHQ:
+            self.title['text_font'] = ToontownGlobals.getSuitFont()
+        else:
+            self.title['text_font'] = ToontownGlobals.getSignFont()
         loadingScreenTex = self.zone2picture.get(ZoneUtil.getBranchZone(zoneId), self.defaultTex)
         self.background = loader.loadTexture(loadingScreenTex)
         self.__count = 0
         self.__expectedCount = range
         if gui:
-            self.tip['text'] = self.getTip(tipCategory)
-            self.title.setPos(0, 0, 0.31)
+            self.title.setPos(0, 0, 0.26)
             self.gui.setPos(0, -0.1, 0)
             self.gui.reparentTo(aspect2d, LOADING_SCREEN_SORT_INDEX)
             self.gui.setTexture(self.background, 1)
-            self.logo.reparentTo(base.a2dpTopCenter, LOADING_SCREEN_SORT_INDEX)
+            if loadingScreenTex == self.defaultTex:
+               self.logo.reparentTo(base.a2dpTopCenter, LOADING_SCREEN_SORT_INDEX)
         else:
             self.gui.reparentTo(hidden)
             self.logo.reparentTo(hidden)
         self.title.reparentTo(base.a2dpBottomCenter, LOADING_SCREEN_SORT_INDEX)
-        self.tip.reparentTo(base.a2dpBottomCenter, LOADING_SCREEN_SORT_INDEX)
         self.waitBar.reparentTo(base.a2dpBottomCenter, LOADING_SCREEN_SORT_INDEX)
         self.waitBar.update(self.__count)
 
@@ -97,7 +99,6 @@ class ToontownLoadingScreen:
         self.waitBar.finish()
         self.waitBar.reparentTo(self.gui)
         self.title.reparentTo(self.gui)
-        self.tip.reparentTo(self.gui)
         self.gui.reparentTo(hidden)
         self.logo.reparentTo(hidden)
         return (self.__expectedCount, self.__count)

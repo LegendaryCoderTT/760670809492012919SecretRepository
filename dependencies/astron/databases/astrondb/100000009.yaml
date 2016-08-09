@@ -1,0 +1,12 @@
+id: 100000009
+class: Account
+fields:
+  ACCOUNT_AV_SET: "[100000010, 0, 0, 0, 0, 0]"
+  ESTATE_ID: 0
+  ACCOUNT_AV_SET_DEL: "[]"
+  CREATED: "\"Tue Aug 09 06:49:15 2016\""
+  LAST_LOGIN: "\"Tue Aug 09 06:56:44 2016\""
+  ACCOUNT_ID: "\"Slushy:\""
+  ACCESS_LEVEL: 700
+  LAST_LOGIN_TS: 1470751004
+  CHAT_SETTINGS: "[1, 1]"
