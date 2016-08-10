@@ -22,10 +22,10 @@ default-model-extension .bam
 texture-anisotropic-degree 16
 
 # Preferences:
-preferences-filename user/preferences.json
+preferences-filename ../preferences.json
 
 # Backups:
-backups-filepath dependencies/backups/
+backups-filepath ../backups
 backups-extension .json
 
 # Server:
