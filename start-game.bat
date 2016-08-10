@@ -4,12 +4,12 @@ rem Read the contents of PPYTHON_PATH into %PPYTHON_PATH%:
 set /P PPYTHON_PATH=<PPYTHON_PATH
 
 rem Get the user input:
-set /P ttsUsername="Username: "
-set /P ttsPassword="Password: "
+set /P ttdUsername="Username: "
+set /P ttdPassword="Password: "
 
 rem Export the environment variables:
-set TTS_PLAYCOOKIE=%ttsUsername%:%ttsPassword%
-set TTS_GAMESERVER=127.0.0.1
+set TTD_PLAYCOOKIE=%ttsUsername%:%ttsPassword%
+set TTD_GAMESERVER=127.0.0.1
 
 cls
 

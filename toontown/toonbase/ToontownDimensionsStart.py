@@ -110,9 +110,9 @@ import time
 import sys
 import random
 import __builtin__
-from toontown.launcher.TTSLauncher import TTSLauncher
+from toontown.launcher.TTDLauncher import TTDLauncher
 
-__builtin__.launcher = TTSLauncher()
+__builtin__.launcher = TTDLauncher()
 
 notify.info('Starting the game...')
 tempLoader = Loader()
@@ -164,7 +164,7 @@ version.setPos(0.03,0.03)
 version.reparentTo(base.a2dBottomLeft)
 from toontown.suit import Suit
 Suit.loadModels()
-loader.beginBulkLoad('init', TTLocalizer.LoaderLabel, 138, 0, TTLocalizer.TIP_NONE)
+loader.beginBulkLoad('init', TTLocalizer.LoaderLabel, 138, 0, TTLocalizer.TIP_NONE, 0)
 from ToonBaseGlobal import *
 from direct.showbase.MessengerGlobal import *
 from toontown.distributed import ToontownClientRepository
