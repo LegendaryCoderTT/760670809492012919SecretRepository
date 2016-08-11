@@ -9,7 +9,7 @@ Ratings:
 
 Presenting................
 
-Toontown Dimensions
+Toontown 420 Edition
 
 Another GR8 Private Server!
 

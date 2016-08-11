@@ -30,7 +30,7 @@ want-rpc-server #f
 rpc-server-endpoint http://localhost:8080/
 
 # DClass file:
-dc-file dependencies/astron/dclass/Dimensions.dc
+dc-file dependencies/astron/dclass/420.dc
 
 # Core features:
 want-pets #t

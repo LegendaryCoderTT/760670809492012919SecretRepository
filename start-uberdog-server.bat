@@ -12,7 +12,7 @@ set /P BASE_CHANNEL="Base channel (DEFAULT: 1000000): " || ^
 set BASE_CHANNEL=1000000
 
 echo ===============================
-echo Starting Toontown Dimensions UberDOG server...
+echo Starting Toontown 420 UberDOG server...
 echo ppython: "C:\Panda3D-1.10.0\python\ppython.exe"
 echo Base channel: %BASE_CHANNEL%
 echo Max channels: %MAX_CHANNELS%
