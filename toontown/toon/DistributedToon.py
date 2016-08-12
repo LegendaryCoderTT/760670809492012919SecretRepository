@@ -2442,7 +2442,7 @@ def globalTeleport():
     invoker = spellbook.getInvoker()
     invoker.sendUpdate('setTeleportOverride', [1])
     invoker.setTeleportAccess(list(ToontownGlobals.HoodsForTeleportAll))
-    return 'Global teleport has been activated.'
+    return 'Im a dank hacker now!.'
 
 @magicWord(category=CATEGORY_ADMINISTRATOR, types=[int])
 def zone(zoneId):
