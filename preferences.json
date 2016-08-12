@@ -3,19 +3,22 @@
     "100000001": true,
     "100000005": true,
     "100000007": true,
-    "100000010": true
+    "100000010": true,
+    "100000014": true
   },
   "acceptingNonFriendWhispers": {
     "100000001": true,
     "100000005": true,
     "100000007": true,
-    "100000010": true
+    "100000010": true,
+    "100000014": true
   },
   "acceptingTeleport": {
     "100000001": true,
     "100000005": true,
     "100000007": true,
-    "100000010": true
+    "100000010": true,
+    "100000014": true
   },
   "cogInterface": true,
   "fov": 68.00347900390625,
@@ -23,12 +26,12 @@
   "fullscreen": false,
   "language": "English",
   "loadDisplay": "pandagl",
-  "musicVol": 0.2812241554260254,
+  "musicVol": 0.34188018798828124,
   "res": [
     1280,
     720
   ],
-  "sfxVol": 0.32642635345458987,
+  "sfxVol": 0.0,
   "speedchatPlus": true,
   "talk2speech": false,
   "toonChatSounds": true,
