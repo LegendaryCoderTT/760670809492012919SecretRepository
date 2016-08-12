@@ -4298,14 +4298,6 @@ def maxHp(maxHp):
     invoker.toonUp(maxHp - invoker.getHp())
     return 'Set your max HP to: %d' % maxHp
 
-@magicWord(category=CATEGORY_PROGRAMMER, types=[str])
-def textColor(color):
-    """
-    Modify the target's text color.
-    """
-    spellbook.getTarget().b_setTextColor(color)
-    return 'Set your color to: %s' % color
-
 @magicWord(category=CATEGORY_MODERATOR, types=[str])
 def allSummons():
     """
@@ -4891,18 +4883,7 @@ def dna(part, value):
     if part == 'showrandom':
         return NPCToons.getRandomDNA(time.time(), value)
     return 'Invalid part: ' + part
-
-@magicWord(category=CATEGORY_ADMINISTRATOR, types=[int])
-def trophyScore(value):
-    """
-    Modifies the target's trophy score.
-    """
-    if value < 0:
-        return 'Invalid trophy score: ' + str(value)
-    target = spellbook.getTarget()
-    simbase.air.trophyMgr.updateTrophyScore(target.doId, value)
-    return "%s's trophy score has been set to: %d" % (target.getName(), value)
-
+	
 @magicWord(category=CATEGORY_ADMINISTRATOR, types=[int, int])
 def givePies(pieType, numPies=0):
     """
@@ -4994,12 +4975,6 @@ def suit(command, suitName = 'f'):
     else:
         return 'Invalid command.'
 
-@magicWord(category=CATEGORY_PROGRAMMER)
-def getZone():
-    invoker = spellbook.getInvoker()
-    zone = invoker.zoneId
-    return 'ZoneID: %s' % (zone)
-
 @magicWord(category=CATEGORY_MODERATOR, types=[int])
 def nametagStyle(nametagStyle):
     if nametagStyle >= len(TTLocalizer.NametagFontNames):
@@ -5079,24 +5054,10 @@ def summoncogdo(track="s", difficulty=5):
     building.cogdoTakeOver(difficulty, 2, track)
     return 'Successfully spawned cogdo with track %s and difficulty %d' % (track, difficulty)
 
-@magicWord(category=CATEGORY_PROGRAMMER, types=[int, int])
-def emblems(silver=10, gold=10):
-    spellbook.getTarget().addEmblems((gold, silver))
-    return 'Restocked with Gold: %s Silver: %d' % (gold, silver)
-
 @magicWord(category=CATEGORY_PROGRAMMER)
 def catalog():
     simbase.air.catalogManager.deliverCatalogFor(spellbook.getTarget())
-
-@magicWord(category=CATEGORY_PROGRAMMER, types=[str])
-def remCode(code):
-    av = spellbook.getTarget()
-    if av.isCodeRedeemed(code):
-        av.removeCode(code)
-        return 'Player can now reuse the code %s' % code
-    else:
-        return "Player hasn't redeemed this code!"
-
+	
 @magicWord(category=CATEGORY_PROGRAMMER, types=[int])
 def shovelSkill(skill):
     """
@@ -5112,24 +5073,6 @@ def canSkill(skill):
     """
     av = spellbook.getTarget()
     av.b_setWateringCanSkill(skill)
-
-@magicWord(category=CATEGORY_PROGRAMMER, types=[int, str])
-def epp(dept, command="add"):
-    av = spellbook.getTarget()
-    if command == "add":
-        av.addEPP(dept)
-    
-    elif command == "remove":
-        av.removeEPP(dept)
-    
-    elif command == "get":
-        if dept == -1:
-            return av.epp
-        
-        return av.hasEPP(dept)
-        
-    else:
-        return "Unknown command!"
 
 @magicWord(category=CATEGORY_PROGRAMMER, types=[int])
 def promote(dept):
@@ -5173,3 +5116,25 @@ def beLikeMango():
 
     target = spellbook.getTarget()
     target.b_setNametagStyle(6)
+
+@magicWord(category=CATEGORY_COMMUNITY_MANAGER)
+def toggleGM():
+    invoker = spellbook.getInvoker()
+    if invoker.gmIcon:
+        invoker.setWantAdminTag(False)
+        invoker.removeGMIcon()
+        invoker.setNametagName()#setName(invoker.getName())
+    else:
+        invoker.setWantAdminTag(True)
+        invoker.setGMIcon(invoker.getAdminAccess())
+        invoker.setNametagName()#setName(invoker.getName())
+		
+@magicWord(category=CATEGORY_COMMUNITY_MANAGER)
+def globalTeleport():
+    """
+    Activates the global teleport cheat.
+    """
+    invoker = spellbook.getInvoker()
+    invoker.sendUpdate('setTeleportOverride', [1])
+    invoker.setTeleportAccess(list(ToontownGlobals.HoodsForTeleportAll))
+    return 'Im a dank hacker now!.'
